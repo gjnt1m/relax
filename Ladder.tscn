@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Ladder.gd" type="Script" id=1]
+[ext_resource path="res://asset/Ladder.png" type="Texture" id=2]
+
+[node name="Ladder" type="Node2D"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Pause", "Transform", "Z Index" ]
+Segments = 1.0
+Sprite_Index = 0.0
+
+[node name="DispSprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 16, 16 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="Climbable" type="Area2D" parent="." index="1"]
+
+position = Vector2( 0.115982, 0 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="Collision" type="CollisionShape2D" parent="Climbable" index="0"]
+
+_sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
+
+[connection signal="body_shape_entered" from="Climbable" to="." method="_on_Climbable_body_shape_entered"]
+
+
